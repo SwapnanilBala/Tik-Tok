@@ -1,20 +1,78 @@
-# Tik_Tok
- 
-This goal of this project is to build a machine learning model that can swiftly and effectively assist in the classification of videos as either claims or opinions.
-the project is mainly done using jupyter notebook(recommended)
+# 🎥 **TikTok Claim vs Opinion Classifier**
 
-# Reports 
-you may find all the details and the excutive summary report alongside the code in each folder.
+> *"Where data meets discourse — building a model that can distinguish between what’s claimed and what’s believed."*
 
-Please not that the(Go through this one by one) -  1. Details regarding the Preliminary analysis in the root folder
-                                                   2. Exploratory Data Analysis
-                                                   3. Data Exploration and Hypothesis testing
-                                                   4. Regrssion Modeling and finally
-                                                   5. Classifying Videos.
+---
 
-Used packages - numpy, pandas, matplotlib.pyplot, seaborn, stats from scipy, OneHotEncoder, resample, train_test_split, LogisticRegression, classification_report, confusion_matrix, ConfusionMatrixDisplay, GridSearchCV, (various metrics), RandomForestClassifier, XGBClassifier, plot_importance.
+### 🎯 **Project Overview**
 
+The goal of this project is to **develop a Machine Learning model** that can  
+**swiftly and accurately classify TikTok videos** as either **_claims_** or **_opinions_**.
 
-Feel Free to reach out to me,
+This classification enables content moderation, trend analysis, and user insight extraction — empowering smarter decisions on social platforms.
 
-Linkdin - https://www.linkedin.com/in/swapnanil-bala-854b722a7/
+> 🧩 *This project was primarily implemented using* **Jupyter Notebook** *(recommended for exploration and visualization).*
+
+---
+
+### 📊 **Reports & Structure**
+
+All detailed reports, executive summaries, and corresponding code notebooks  
+are organized in separate folders for seamless navigation.
+
+Follow the workflow step-by-step 👇
+
+1. 📁 **Preliminary Analysis**  
+   → Initial inspection, structure overview, and raw data validation.
+
+2. 🔍 **Exploratory Data Analysis (EDA)**  
+   → Pattern discovery, correlation study, missing data handling, and visualization.
+
+3. 🧪 **Data Exploration & Hypothesis Testing**  
+   → In-depth statistical exploration and hypothesis validation.
+
+4. 📈 **Regression Modeling**  
+   → Baseline predictive analysis and model performance comparison.
+
+5. 🤖 **Video Classification**  
+   → Implementation of the final ML classification pipeline for claims vs opinions.
+
+---
+
+### 🧰 **Tech Stack & Libraries**
+
+> Key tools that made the magic happen ⚙️  
+
+#### 🧮 **Core Data Libraries**
+- `numpy`, `pandas`, `matplotlib.pyplot`, `seaborn`  
+- `stats` from `scipy`  
+
+#### 🧠 **Machine Learning (sklearn)**
+- `OneHotEncoder`, `train_test_split`, `resample`  
+- `LogisticRegression`, `RandomForestClassifier`, `XGBClassifier`  
+- `classification_report`, `confusion_matrix`, `ConfusionMatrixDisplay`  
+- `GridSearchCV`, and various `metrics` for model tuning and evaluation  
+
+#### 🚀 **XGBoost**
+- `plot_importance` for visualizing feature significance  
+
+---
+
+### 🗂️ **Outcome**
+
+✅ Built a scalable pipeline to classify video text into **claims** or **opinions**  
+✅ Conducted full EDA, hypothesis testing, and regression analysis  
+✅ Evaluated models using advanced metrics (accuracy, recall, F1-score)  
+✅ Finalized model after hyperparameter optimization via GridSearchCV  
+
+---
+
+### ✨ **Connect With Me**
+
+> 💬 *Let’s connect and talk about data, ML, or your next big idea!*  
+
+📎 **LinkedIn:** [Swapnanil Bala](https://www.linkedin.com/in/swapnanil-bala-854b722a7/)  
+👨‍💻 *Data Science | Machine Learning | Python | SQL*  
+💡 *“Learn deeply. Build boldly. Create impact.”*
+
+---
