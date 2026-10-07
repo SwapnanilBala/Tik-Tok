@@ -1,78 +1,59 @@
-# 🎥 **TikTok Claim vs Opinion Classifier**
+# TikTok Claims Classifier
 
-> *"Where data meets discourse — building a model that can distinguish between what’s claimed and what’s believed."*
+Classifies TikTok videos as **claims** or **opinions**, so a moderation team can prioritise which
+reported videos need human review first. This is the end-of-program capstone of the
+**Google Advanced Data Analytics Professional Certificate**, built on its synthetic TikTok dataset
+(19,382 videos; 19,084 after dropping rows with missing values).
 
----
+## Result
 
-### 🎯 **Project Overview**
+**Champion: random forest. On the held-out test set it misclassified 5 of 3,817 videos** (99.87% accuracy, 99.8% recall on claims).
 
-The goal of this project is to **develop a Machine Learning model** that can  
-**swiftly and accurately classify TikTok videos** as either **_claims_** or **_opinions_**.
+| Model | Split | Recall (claims) | Precision | F1 |
+|---|---|---:|---:|---:|
+| Random forest | 5-fold CV | 0.995 | — | — |
+| XGBoost | 5-fold CV | 0.991 | — | — |
+| Random forest | Validation (3,817) | 1.00 | 1.00 | 1.00 |
+| XGBoost | Validation (3,817) | 0.99 | 1.00 | 0.99 |
+| **Random forest** | **Test (3,817)** | **0.998** | **0.999** | **0.999** |
 
-This classification enables content moderation, trend analysis, and user insight extraction — empowering smarter decisions on social platforms.
+<p align="center"><img src="docs/test-confusion-matrix.png" alt="Random forest confusion matrix on the test set: 1,926 opinions and 1,886 claims correct, 2 opinions predicted as claims, 3 claims predicted as opinions" width="420"></p>
+<p align="center"><sub>Test set. 0 = opinion, 1 = claim.</sub></p>
 
-> 🧩 *This project was primarily implemented using* **Jupyter Notebook** *(recommended for exploration and visualization).*
+**What drives it:** engagement. Views, likes, shares and downloads were the most predictive features,
+which matches what EDA showed: claim videos have a median of about 502k views, against about 5k for
+opinions.
 
----
+Recall on claims was the selection metric. Missing a claim (a false negative) is the costly error
+here, because it skips human review.
 
-### 📊 **Reports & Structure**
+## The workflow
 
-All detailed reports, executive summaries, and corresponding code notebooks  
-are organized in separate folders for seamless navigation.
+Each stage has a notebook and an executive summary, following Google's PACE framework
+(Plan, Analyze, Construct, Execute):
 
-Follow the workflow step-by-step 👇
+| # | Stage | Notebook | Summary |
+|---|---|---|---|
+| 1 | Data inspection | [Preliminary analysis](Tik_Tok/Preliminary_Analysis_of_the_Data.ipynb) | [PACE strategy](Tik_Tok/PACE%20strategy%20document.pdf) |
+| 2 | Exploratory data analysis | [EDA](Tik_Tok/Exploratory%20Data%20Analysis/EDA%20TikTok%20project%20lab.ipynb) | [PDF](Tik_Tok/Exploratory%20Data%20Analysis/EDA%20executive%20summary.pdf) |
+| 3 | Hypothesis testing | [Notebook](Tik_Tok/Data%20exploration%20and%20Hypothesis%20testing/Data%20exploration%20and%20Hypothesis%20testing%20TikTok%20project%20lab.ipynb) | [PPTX](Tik_Tok/Data%20exploration%20and%20Hypothesis%20testing/Data%20Exploration%20and%20Hypothesis%20testing%20executive_summary.pptx) |
+| 4 | Logistic regression | [Notebook](Tik_Tok/Regression%20Modeling/Regrssion%20Modelling%20project%20lab.ipynb) | [PPTX](Tik_Tok/Regression%20Modeling/Regression_Modelling_Executive_Summary.pptx) |
+| 5 | **Classification models** | [Notebook](Tik_Tok/Classifying%20Videos/Classifying%20videos%20using%20machine%20learning.ipynb) | [PPTX](Tik_Tok/Classifying%20Videos/Classifying%20Videos%20Executive%20Summary.pptx) |
 
-1. 📁 **Preliminary Analysis**  
-   → Initial inspection, structure overview, and raw data validation.
+**Modelling setup:**
+- Split: 60 / 20 / 20 into train, validation and test.
+- Features: engagement counts, video duration, author and verification status, transcription length, and the 15 most common 2–3-word phrases from the transcription (`CountVectorizer`).
+- Tuning: `GridSearchCV` with `refit='recall'`.
 
-2. 🔍 **Exploratory Data Analysis (EDA)**  
-   → Pattern discovery, correlation study, missing data handling, and visualization.
+## Run it
 
-3. 🧪 **Data Exploration & Hypothesis Testing**  
-   → In-depth statistical exploration and hypothesis validation.
+```bash
+pip install pandas numpy scikit-learn xgboost matplotlib seaborn scipy jupyter
+jupyter notebook
+```
 
-4. 📈 **Regression Modeling**  
-   → Baseline predictive analysis and model performance comparison.
+The dataset comes from the certificate program and isn't redistributed here.
 
-5. 🤖 **Video Classification**  
-   → Implementation of the final ML classification pipeline for claims vs opinions.
+## Stack
 
----
-
-### 🧰 **Tech Stack & Libraries**
-
-> Key tools that made the magic happen ⚙️  
-
-#### 🧮 **Core Data Libraries**
-- `numpy`, `pandas`, `matplotlib.pyplot`, `seaborn`  
-- `stats` from `scipy`  
-
-#### 🧠 **Machine Learning (sklearn)**
-- `OneHotEncoder`, `train_test_split`, `resample`  
-- `LogisticRegression`, `RandomForestClassifier`, `XGBClassifier`  
-- `classification_report`, `confusion_matrix`, `ConfusionMatrixDisplay`  
-- `GridSearchCV`, and various `metrics` for model tuning and evaluation  
-
-#### 🚀 **XGBoost**
-- `plot_importance` for visualizing feature significance  
-
----
-
-### 🗂️ **Outcome**
-
-✅ Built a scalable pipeline to classify video text into **claims** or **opinions**  
-✅ Conducted full EDA, hypothesis testing, and regression analysis  
-✅ Evaluated models using advanced metrics (accuracy, recall, F1-score)  
-✅ Finalized model after hyperparameter optimization via GridSearchCV  
-
----
-
-### ✨ **Connect With Me**
-
-> 💬 *Let’s connect and talk about data, ML, or your next big idea!*  
-
-📎 **LinkedIn:** [Swapnanil Bala](https://www.linkedin.com/in/swapnanil-bala-854b722a7/)  
-👨‍💻 *Data Science | Machine Learning | Python | SQL*  
-💡 *“Learn deeply. Build boldly. Create impact.”*
-
----
+Python · pandas · scikit-learn · XGBoost · SciPy · matplotlib / seaborn
